@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.entity.User;
@@ -23,8 +26,8 @@ public class UserController {
 	}
 
 	@GetMapping("/user/{id}")
-	Iterable<User> getUser(@PathVariable("id") Integer id) {
-		return userService.getUser();
+	Optional<User> getUser(@PathVariable("id") Integer id) {
+		return userService.getUsers();
 	}
 
 	@PostMapping("/user") // create User

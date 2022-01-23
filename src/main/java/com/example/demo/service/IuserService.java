@@ -15,5 +15,7 @@ public class IuserService {
 		userRepository.save(user);
 		
 	}
-
+   public Iterable<User> getUser() {
+	   return userRepository.findAll();
+   }
 }

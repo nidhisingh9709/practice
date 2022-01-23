@@ -2,6 +2,7 @@ package com.example.demo;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,13 +13,18 @@ import com.example.demo.service.IuserService;
 
 @RestController
 public class UserController {
-	
+
 	@Autowired
 	IuserService userService;
+
 	@GetMapping("/user")
-	String getUser() {
-		System.out.println("Testing");
-		return "testing";
+	Iterable<User> getUser() {
+		return userService.getUser();
+	}
+
+	@GetMapping("/user/{id}")
+	Iterable<User> getUser(@PathVariable("id") Integer id) {
+		return userService.getUser();
 	}
 
 	@PostMapping("/user") // create User
@@ -32,4 +38,3 @@ public class UserController {
 
 	}
 }
-

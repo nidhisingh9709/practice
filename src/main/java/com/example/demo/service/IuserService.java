@@ -27,4 +27,9 @@ public class IuserService {
 		// TODO Auto-generated method stub
 		return userRepository.findById(id);
 	}
+
+	public void deleteUser(Integer id) {
+		// TODO Auto-generated method stub
+		userRepository.deleteById(id);
+	}
 }

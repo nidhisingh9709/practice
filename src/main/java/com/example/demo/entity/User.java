@@ -1,9 +1,12 @@
 package com.example.demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -21,13 +24,27 @@ public class User {
 	private String name;
 	@Range(min=0)
 	private int age;
-	private String city;
 	
-	public String getCity() {
-		return city;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="adreess_id",referencedColumnName="id")
+	Address address;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="company_id", referencedColumnName="id")
+	Company company;
+	
+	public Company getCompany() {
+		return company;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	public int getId() {
 		return id;

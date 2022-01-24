@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ public class IuserService {
 	@Autowired // dependency injection
 	UserRepository userRepository;
 
+	@Transactional
 	public void saveUser(User user) {
 		// TODO Auto-generated method stub
 		userRepository.save(user);
+		throw new IllegalArgumentException();
 
 	}
 
@@ -27,7 +31,8 @@ public class IuserService {
 		// TODO Auto-generated method stub
 		return userRepository.findById(id);
 	}
-
+	
+    @Transactional
 	public void deleteUser(Integer id) {
 		// TODO Auto-generated method stub
 		userRepository.deleteById(id);
